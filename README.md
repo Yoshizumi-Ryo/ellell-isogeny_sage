@@ -40,6 +40,16 @@ Read_me.pyの一番上の`load("setting.py")`をコピペしてください.
 
 2. 計算時間を測りたい場合はその下の部分をコピペしくてださい. 
 
+## コードの説明
+
+func_additions.pyはテータ座標の演算に関して書いています. 
+
+func_attack.pyはB-SIDH攻撃について (ほとんと上と同じです.)
+
+func_elliptic.pyは楕円曲線の演算について (ほとんと上と同じです.)
+
+func_isogeny.pyは同種写像について書いています. 
+
 
 
 
