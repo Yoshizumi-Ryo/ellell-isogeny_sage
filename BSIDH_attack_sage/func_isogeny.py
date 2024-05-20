@@ -106,8 +106,7 @@ def codomain_lv2tnp_al_lpow(lv2tnp,lv2_e1,lv2_e2,lv2_e12,l,HSN):
     return lv2tnp_cd,mu1_lpow,mu2_lpow,mu12_lpow
 '''
 
-
-#2
+#C1
 #avoid to take l-th square roots.
 def codomain_lv2tnp_al_lpow(lv2tnp,lv2_e1,lv2_e2,lv2_e12,l,HSN):
     assert(is_prime(l))
@@ -143,7 +142,7 @@ def codomain_lv2tnp_al_lpow(lv2tnp,lv2_e1,lv2_e2,lv2_e12,l,HSN):
 
 #-----------------------
 
-#take l-th square roots.
+#C3
 def codomain_lv2tnp_al_sumsq(lv2tnp,lv2_e1,lv2_e2,lv2_e12,l,HSN):
     assert(is_prime(l))
     assert(l!=2)
@@ -306,6 +305,7 @@ def x_plus_linear_combination(lv2tnp,l,lv2_e1,lv2_e2,lv2_x,lv2_xpe1,lv2_xpe2,lv2
     return xplincom
 
 
+#E1
 def evaluation_lv2_al_lpow(lv2tnp,l,lv2_e1,lv2_e2,lv2_e12,lv2_x,lv2_xpe1,lv2_xpe2,mu1_lpow,mu2_lpow,mu12_lpow,HSN):
     lv2_xpe12=Extended_Addition(lv2tnp,lv2_x,lv2_e1,lv2_e2,lv2_xpe1,lv2_e12,lv2_xpe2)
     nu1_lpow=nu_ell_power_al(lv2tnp,lv2_e1,lv2_x,lv2_xpe1,l,mu1_lpow,HSN)
