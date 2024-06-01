@@ -3,8 +3,12 @@
 
 
 #setting========================================================
-p =69504748411397252246297776661471
-l=11
+
+#input paremeter here. -----------------
+p =69504748411397252246297776661471 #characteristic.
+l=11  #degree.
+#----------------------------------------
+
 assert(l//(p+1)==0 or l//(p-1)==0)
 K=GF(p**4)
 assert(p%4==3)
@@ -16,18 +20,18 @@ assert(gcd(N_A,N_B)==1)
 #y^2=x(x-1)(x+1)=x^3-x.
 E_0=EllipticCurve(K,[K(-1),K(0)])
 P_A,Q_A=E_0.torsion_basis(N_A)
-_,_,_,tc_0,tc_f1,tc_f2,tc_f12,tc_x,tc_xpf1,tc_xpf2,tc_y,tc_ypf1,tc_ypf2=Attack_prepare(E_0,E_0,N_A,N_B,P_A,Q_A,Q_A,P_A,K)
-tc_f1.order =l
-tc_f2.order =l
-tc_f12.order=l
+_,_,_,tc_0,tc_e1,tc_e2,tc_e12,tc_x,tc_xpe1,tc_xpe2,tc_y,tc_ype1,tc_ype2=Attack_prepare(E_0,E_0,N_A,N_B,P_A,Q_A,Q_A,P_A,K)
+tc_e1.order =l
+tc_e2.order =l
+tc_e12.order=l
 #================================================================
 
 
 
 #compute codomain.
-tc_f0_c1=Codomain_C1(tc_0,[tc_f1,tc_f2,tc_f12])
-tc_f0_c2=Codomain_C2(tc_0,[tc_f1,tc_f2,tc_f12])
-tc_f0_c3=Codomain_C3(tc_0,[tc_f1,tc_f2,tc_f12])
+tc_f0_c1=Codomain_C1(tc_0,[tc_e1,tc_e2,tc_e12])
+tc_f0_c2=Codomain_C2(tc_0,[tc_e1,tc_e2,tc_e12])
+tc_f0_c3=Codomain_C3(tc_0,[tc_e1,tc_e2,tc_e12])
 tc_f0=tc_f0_c1
 
 
@@ -37,17 +41,13 @@ assert(tc_f0_c2.Is_same_proj(tc_f0_c3))
 assert(tc_f0_c3.Is_same_proj(tc_f0_c1))
 
 
-lmd_data=Product_power_lambda([tc_f1,tc_f2,tc_f12])
+lmd_data=Product_power_lambda([tc_e1,tc_e2,tc_e12])
 
-tc_0.Reset_data()
-tc_f1.Reset_data()
-tc_f2.Reset_data()
-tc_f12.Reset_data()  
 
 #compute evaluation.
-tc_fx_E1=Evaluation_E1(tc_0,[tc_f1,tc_f2,tc_f12],[tc_x,tc_xpf1,tc_xpf2],lmd_data)
-tc_fx_E2=Evaluation_E2(tc_0,[tc_f1,tc_f2,tc_f12],[tc_x,tc_xpf1,tc_xpf2],lmd_data)
-tc_fx_E3=Evaluation_E3(tc_0,[tc_f1,tc_f2,tc_f12],[tc_x,tc_xpf1,tc_xpf2],lmd_data)
+tc_fx_E1=Evaluation_E1(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
+tc_fx_E2=Evaluation_E2(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
+tc_fx_E3=Evaluation_E3(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
 
 
 #there should be the same theta coordinates.
