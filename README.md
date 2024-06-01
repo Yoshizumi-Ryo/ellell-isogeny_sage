@@ -1,55 +1,51 @@
 
 # ell_ell_isogeny_sage
 
-今回の論文の疑似コードに沿ったコードです. 現在, 結果が整合的でないです. 
+In this file, you can count operations of calculating $(\ell,\ell)$-isogeny and implement an attack for B-SIDH.
 
-## 使い方
+This is writen by Sagemath.
 
-最初にload_this.sage内のimportの部分とloadの部分をコピペしてください. 
+## How to use
 
-1. B-SIDH attackを実装する場合は, 同ファイルの対応する部分(#attack for B-SIDH)をコピペして下さい. (途中でassertion errorを起こします: 点像のorderが正しくないとなります.)
+First, please load `Main.sage`: 
 
-2. 例を計算する場合は, 同ファイルの対応する部分(#calculation example)をコピペしてください. (途中でassertion errorを起こします: 点像のorderが正しくないとなります.)
-   例は定義域が楕円曲線の直積で, 素数次数の同種写像を計算しています.
+```
+load("Main.sage")
+```
 
-3. countはまだ整備されていません. 
 
-## コードの説明
+### 1.Example
 
-class_count.pyがcountするための体を作るコードが書かれています. 
+When you want to calculate  an $(\ell,\ell)$-isogeny, please look at `test_example.sage`.
 
-calss_theta.pyはtheta座標について書かれています. テータ座標の演算などもここです. 
+In the file, first you implement "setting", then compute  $(\ell,\ell)$-isogeny, for example, 
 
-func_elliptic.pyは楕円曲線に関するアルゴリズムです. ほとんどもう一つのBSIDH_attack_sageと同じです. 
+```
+Codomain_C1(tc_0,[tc_e1,tc_e2,tc_e12])
+```
 
-func_for_attack.pyはB-SIDH attackに関することが書かれています. 
+### 2.Attack for B-SIDH
 
-func_fraction.pyは分数の計算について書かれています. 分数をよく扱うので, それ関連のものです. 
+When you want to implement attack for B-SIDH, please load `test_attack.sage`.
 
-func_isogeny.pyは同種写像の計算について書かれています. これがメインです. 
+```
+load("test_attack.sage")
+```
 
-# BSIDH_attack_sage   
+Then, key exchange between Alice and Bob and attack for it begin. 
 
-同じくsageのコードで正しく動きますが, 割り算を用いています. 
+If you want to implement other parameters, please rewrite parameter of the above of `test_attack.sage`.
 
-## 使い方
 
-Read_me.pyの一番上の`load("setting.py")`をコピペしてください. 
+### 3.Count operation to calculate $(\ell,\ell)$-isogeny 
 
-1. B-SIDH攻撃したい場合は下の部分をコピペしてください.
+If you want to count the operation of $(\ell,\ell)$-isogeny for 6 ways (C1),(C2),(C3),(E1),(E2),(E3) for $3\le \ell\le L$, 
+please use function `Count_operation_of_isogeny(L)`. You can implement for $L < 200$, for example
 
-2. 計算時間を測りたい場合はその下の部分をコピペしくてださい. 
-
-## コードの説明
-
-func_additions.pyはテータ座標の演算に関して書いています. 
-
-func_attack.pyはB-SIDH攻撃について (ほとんと上と同じです.)
-
-func_elliptic.pyは楕円曲線の演算について (ほとんと上と同じです.)
-
-func_isogeny.pyは同種写像について書いています. 
-
+```
+Count_operation_of_isogeny(30)
+```
+More concletely, please see `test_count.sage`.
 
 
 
