@@ -10,6 +10,7 @@ def Count_operation_of_isogeny(count_max:int):
     assert(count_max<=199)
     p=826791736418446924644415105270960270928927659729776400179861442336062222833458285859
     print("p+1=", factor(p+1))
+    print("please wait 2 minutes.")
     #field with counter.
     K=Finite_field_with_count(p)
     #setting.----------------------------------------------------------------
@@ -53,9 +54,7 @@ def Count_operation_of_isogeny(count_max:int):
             tc_xpe2 =tc_0.Kxpy_xpy(k,tc_f2,tc_x,tc_xpf2)#x+e_2
             #--------------------
             K.reset_count()
-            print("")
             print("l=",l) 
-            print("r=",len(Sum_of_square(l)))
             #C1----------------------------------------------------------------
             tc_0.Reset_data()
             tc_e1.Reset_data()

@@ -87,7 +87,7 @@ def Elliptic_to_Legendre(E):
 
 
 
-
+'''
 def Elliptic_to_Legendre_with_basis(E,N:int):
     fld=E.base_field()
     #assert(K==base_field)
@@ -101,6 +101,32 @@ def Elliptic_to_Legendre_with_basis(E,N:int):
     S2=E_lmd(S2)
     iso_E_Elmd=E.isomorphisms(E_lmd)[1]
     return lmd,E_lmd,iso_E_Elmd,S1,S2
+'''
+
+
+def Elliptic_to_Legendre_with_basis(E,N):
+    coff=E.a_invariants()
+    #y^2=x^3+ax^2+bx+c
+    K=E.base_ring()
+    Fp2=K.subfield(2)
+    a=Fp2(coff[2])
+    b=Fp2(coff[3])
+    c=Fp2(coff[4])
+    Y=gen(Fp2['Y'])
+    f=Y**3+a*Y**2+b*Y+c
+    roots=f.roots()
+    x1=roots[0][0]
+    x2=roots[1][0]
+    x3=roots[2][0]
+    lmd=(x3-x1)/(x2-x1)
+    E_lmd=EllipticCurve(Fp2,[0,(-lmd-1),0,lmd,0])
+    S1,S2=E_lmd.torsion_basis(N)
+    E_lmd=EllipticCurve(K,[0,(-lmd-1),0,lmd,0])
+    S1=E_lmd(S1)
+    S2=E_lmd(S2)
+    iso_E_Elmd=E.isomorphisms(E_lmd)[1]
+    return lmd,E_lmd,iso_E_Elmd,S1,S2
+
 
 
 
