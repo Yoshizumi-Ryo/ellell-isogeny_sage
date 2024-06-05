@@ -117,22 +117,13 @@ def Finite_field_with_count(p:int):
             Field.n_sqr = 0
             Field.n_inv = 0
         def count():
-            return ("M",Field.n_mul),("S",Field.n_sqr),("I",Field.n_inv),("M+S",Field.n_mul+Field.n_sqr)
+            return ("M",Field.n_mul),("S",Field.n_sqr),("I",Field.n_inv),("M+S",Field.n_mul+Field.n_sqr),("2M+3S",2*Field.n_mul+3*Field.n_sqr)
         
-    fld=GFp4pow(p)[0]
-    Field.F=fld
+    Field.F=GF(p**2)
     Field.n_add = 0
     Field.n_mul = 0
     Field.n_sqr = 0
     Field.n_inv = 0
     return Field
-
-
-    
-    
-
-
-
-
 
 
