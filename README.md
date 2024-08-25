@@ -21,7 +21,7 @@ When you want to calculate  an $(\ell,\ell)$-isogeny, please look at `test_examp
 In the file, first you implement "setting", then compute  $(\ell,\ell)$-isogeny, for example, 
 
 ```
-Codomain_C1(tc_0,[tc_e1,tc_e2,tc_e12])
+CodSq(tc_0,[tc_e1,tc_e2,tc_e12])
 ```
 
 ### 2.Attack for B-SIDH
