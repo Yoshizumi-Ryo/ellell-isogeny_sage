@@ -1,5 +1,5 @@
 
-# ellell_isogeny
+# ell_ell_isogeny_sage
 
 In this file, you can count operations of calculating $(\ell,\ell)$-isogeny and implement an attack for B-SIDH.
 
