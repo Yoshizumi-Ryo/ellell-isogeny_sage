@@ -1,9 +1,9 @@
 
-# ell_ell_isogeny_sage
+# ellell_isogeny
 
 In this file, you can count operations of calculating $(\ell,\ell)$-isogeny and implement an attack for B-SIDH.
 
-This is writen by Sagemath.
+This is writen in [SageMath](https://www.sagemath.org).
 
 ## How to use
 
@@ -39,7 +39,7 @@ If you want to implement other parameters, please rewrite parameter of the above
 
 ### 3.Count operation to calculate $(\ell,\ell)$-isogeny 
 
-If you want to count the operation of $(\ell,\ell)$-isogeny for 6 ways (C1),(C2),(C3),(E1),(E2),(E3) for $3\le \ell\le L$, 
+If you want to count the operation of $(\ell,\ell)$-isogeny for 4 ways $\mathtt{CodSq}, \mathtt{CodOne}, \mathtt{EvalSq}, \mathtt{EvalOne}$ for $3\le \ell\le L$, 
 please use function `Count_operation_of_isogeny(L)`. You can implement for $L < 200$, for example
 
 ```
