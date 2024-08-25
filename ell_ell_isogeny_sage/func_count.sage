@@ -75,12 +75,10 @@ def Count_later_codomain(count_max,N_A,tc_0,tc_f1,tc_f2,tc_f12,tc_x,tc_xpf1,tc_x
             tc_e12.Reset_data()  
             ct_mlt_0=(tc_0.field).n_mul
             ct_sqr_0=(tc_0.field).n_sqr
-            if kind=="C1":
-                tc_f0=Codomain_C1(tc_0,[tc_e1,tc_e2,tc_e12])
-            if kind=="C1red":
-                tc_f0=Codomain_C1_red(tc_0,[tc_e1,tc_e2,tc_e12])
-            if kind=="C2":
-                tc_f0=Codomain_C2(tc_0,[tc_e1,tc_e2,tc_e12])
+            if kind=="CodSq":
+                tc_f0=CodSq(tc_0,[tc_e1,tc_e2,tc_e12])
+            if kind=="CodOne":
+                tc_f0=CodOne(tc_0,[tc_e1,tc_e2,tc_e12])
             ct_mlt_1=(tc_0.field).n_mul
             ct_sqr_1=(tc_0.field).n_sqr
             c_list.append(3*ct_mlt_1+2*ct_sqr_1-3*ct_mlt_0-2*ct_sqr_0)    
@@ -113,20 +111,19 @@ def Count_later_evaluation(count_from,count_max,N_A,tc_0,tc_f1,tc_f2,tc_f12,tc_x
             print("")
             print("l=",l) 
             print("r=",len(Sum_of_square(l)))
-            #C1---------------------------------------------------------------
-            tc_f0=Codomain_C1(tc_0,[tc_e1,tc_e2,tc_e12])
-            #----------------------------------------------------------------
+            #---------------------------------------------------------------
+            tc_f0=CodSq(tc_0,[tc_e1,tc_e2,tc_e12])
             lmd_data=Product_power_lambda([tc_e1,tc_e2,tc_e12])
-            #E1----------------------------------------------------------------
+            #----------------------------------------------------------------
             tc_x.Reset_data()
             tc_xpe1.Reset_data()
             tc_xpe2.Reset_data()  
             ct_mlt_0=(tc_0.field).n_mul
             ct_sqr_0=(tc_0.field).n_sqr
-            if kind=="E1":
-                tc_fx=Evaluation_E1(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
-            if kind=="E2":
-                tc_fx=Evaluation_E2(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
+            if kind=="EvalSq":
+                tc_fx=EvalSq(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
+            if kind=="EvalOne":
+                tc_fx=EvalOne(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
             ct_mlt_1=(tc_0.field).n_mul
             ct_sqr_1=(tc_0.field).n_sqr
             e_list.append(ct_mlt_1*3+ct_sqr_1*2-ct_mlt_0*3-ct_sqr_0*2)       
@@ -158,20 +155,19 @@ def Count_later_evaluation_1mod4(count_from,count_max,N_A,tc_0,tc_f1,tc_f2,tc_f1
             print("")
             print("l=",l) 
             print("r=",len(Sum_of_square(l)))
-            #C1---------------------------------------------------------------
-            tc_f0=Codomain_C1(tc_0,[tc_e1,tc_e2,tc_e12])
-            #----------------------------------------------------------------
+            #---------------------------------------------------------------
+            tc_f0=CodSq(tc_0,[tc_e1,tc_e2,tc_e12])
             lmd_data=Product_power_lambda([tc_e1,tc_e2,tc_e12])
-            #E1----------------------------------------------------------------
+            #----------------------------------------------------------------
             tc_x.Reset_data()
             tc_xpe1.Reset_data()
             tc_xpe2.Reset_data()  
             ct_mlt_0=(tc_0.field).n_mul
             ct_sqr_0=(tc_0.field).n_sqr
-            if kind=="E1":
-                tc_fx=Evaluation_E1(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
-            if kind=="E2":
-                tc_fx=Evaluation_E2(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
+            if kind=="EvalSq":
+                tc_fx=EvalSq(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
+            if kind=="EvalOne":
+                tc_fx=EvalOne(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
             ct_mlt_1=(tc_0.field).n_mul
             ct_sqr_1=(tc_0.field).n_sqr
             e_list.append(ct_mlt_1*3+ct_sqr_1*2-ct_mlt_0*3-ct_sqr_0*2)       

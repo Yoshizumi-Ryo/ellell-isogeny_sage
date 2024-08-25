@@ -11,13 +11,31 @@ def GFp4pow(p:int):
         z=Fp2.random_element()
     t=ZZ(z + z**p)
     n=ZZ(z**(p+1))
-    R = PolynomialRing(GF(p),'x')
+    R = PolynomialRing(Fp2,'x')
     x=R.gen()
     f=x**4-t*x**2+n
     Fp4=GF(p**4,modulus=f,name='a')
-    return Fp4,x
+    #Fp4=Fp2.extension(f)
+    assert(order(Fp4)==p**4)
+    return Fp4,x,Fp2
 
 
+
+def In_subfield(a):
+    K=parent(a)
+    p=K.characteristic() 
+    assert(order(K)==p**4)
+    assert(a in K)
+    return a**(p**2)==a
+
+
+
+
+def In_subfield_tc(tc:Coord):
+    t1=tc.numer[1]/tc.numer[0]
+    t2=tc.numer[2]/tc.numer[0]
+    t3=tc.numer[3]/tc.numer[0]
+    return In_subfield(t1) and In_subfield(t2) and In_subfield(t3)
 
 
 #Cyclic isogeny--------------------
@@ -190,13 +208,16 @@ def Leg_lv2(lm,sq_rt_lm,sq_rt_lmm1,lv2tnp:list,pt):
     if w==0:
         return lv2tnp
     assert(w==1)
-    #assert((v**2)==u*(u-1)*(u-lm))
+    assert((v**2)==u*(u-1)*(u-lm))
     thc0_sq=sq_rt_lm*(u-1)
     thc1_sq=sq_rt_lmm1*u
     thc2_sq=sq_rt_lm*thc0_sq-sq_rt_lmm1*thc1_sq
     thc3_sq=sq_rt_lm*thc1_sq-sq_rt_lmm1*thc0_sq
-    lv2=[(parent(u))(1),(thc1_sq+thc3_sq)/(thc0_sq+thc2_sq)]
+    #lv2=[(parent(u))(1),(thc1_sq+thc3_sq)/(thc0_sq+thc2_sq)]
+    lv2=[(thc0_sq+thc2_sq),(thc1_sq+thc3_sq)]
     return lv2
+
+
 
 
 

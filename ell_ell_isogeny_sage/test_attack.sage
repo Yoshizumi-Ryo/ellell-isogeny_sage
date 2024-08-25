@@ -27,7 +27,7 @@ assert((p+1)%N_B==0)
 
 
 #the 4th primitive root of 1=========
-K,_=GFp4pow(p)
+K,_,Fp2=GFp4pow(p)
 X=gen(K['X'])
 f=X**2+1
 zeta_4=f.roots()[0][0]

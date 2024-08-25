@@ -248,7 +248,7 @@ def Codomain_common(tc_0:NullCoord,basis:list):
 
 
 
-
+"""
 def Codomain_C1(tc_0:NullCoord,basis:list):
     [tc_e1,tc_e2,tc_e12]=basis
     l=tc_e1.order
@@ -289,13 +289,13 @@ def Codomain_C1(tc_0:NullCoord,basis:list):
     proj_tc_f0=Projective_Theta(pre_tc_f0)
     tc_f0=NullCoord(proj_tc_f0,tc_0.field(1))
     return tc_f0
-
+"""
 
 
 
 
 #l is sum of sq. 
-def Codomain_C1_red(tc_0:NullCoord,basis:list):
+def CodSq(tc_0:NullCoord,basis:list):
     l,lincom,lmd1_lpow,lmd2_lpow,lmd_div_lpow,den=Codomain_common(tc_0,basis)
     a_u=Sum_of_square(l)
     r=len(a_u)    
@@ -372,7 +372,7 @@ def Codomain_C1_red(tc_0:NullCoord,basis:list):
 
 
 #take l-th power.
-def Codomain_C2(tc_0:NullCoord,basis:list):
+def CodOne(tc_0:NullCoord,basis:list):
     l,h_lincom,lmd1_lpow,lmd2_lpow,lmd_div_lpow,den=Codomain_common(tc_0,basis)
     den_pow         =Multpower_straight(den            ,3*(l-1)**2)
     lmd1_lpow_pow   =Multpower_sq(lmd1_lpow[0],l)
@@ -471,7 +471,7 @@ def Take_lmd_power(tc_x:Coord,xple1:Coord,xple2:Coord,lm_1_lsq:Coord,lm_2_lsq:Co
 
 
 
-def Evaluation_E2(tc_0:Coord,basis:list,pt_list:list,lmd_data:list):
+def EvalOne(tc_0:Coord,basis:list,pt_list:list,lmd_data:list):
     l=basis[0].order
     [lmd_pow_product,lm_1_lsq,lm_2_lsq]=lmd_data
     assert(type(lmd_pow_product)==dict)
@@ -507,9 +507,46 @@ def Evaluation_E2(tc_0:Coord,basis:list,pt_list:list,lmd_data:list):
 
 
 
+
+def EvalOne_test(tc_0:Coord,basis:list,pt_list:list,lmd_data:list):
+    l=basis[0].order
+    [lmd_pow_product,lm_1_lsq,lm_2_lsq]=lmd_data
+    assert(type(lmd_pow_product)==dict)
+    assert(type(lm_1_lsq)==list)
+    assert(type(lm_2_lsq)==list)
+    assert(len(basis)  ==3)
+    assert(len(pt_list)==3)
+    assert(len(lmd_pow_product)==l**2)
+    xplincom=XpLinCom(tc_0,basis,pt_list)
+    assert(len(xplincom)==l**2)
+    [tc_e1,tc_e2,_]=basis
+    tc_x=pt_list[0]
+    xple1=tc_0.Diff_Add(xplincom[(l-1,0)],tc_e1,xplincom[(l-2,0)])
+    xple2=tc_0.Diff_Add(xplincom[(0,l-1)],tc_e2,xplincom[(0,l-2)])
+    ml1_lpow_pow,ml2_lpow_pow,muden_lpow_pow=Take_lmd_power(tc_x,xple1,xple2,lm_1_lsq,lm_2_lsq,l)
+    xplincom,den=Dict_common_denom(xplincom)
+    den_lpow=den**l
+    xplincom_lpow={key:Coord([(xplincom[key].numer[i])**l for i in range(0,4)],den_lpow) for key in xplincom.keys()}
+    for (k1,k2) in xplincom:
+        coeff=[lmd_pow_product[(k1,k2)][0]*ml1_lpow_pow[k1]*ml2_lpow_pow[k2],lmd_pow_product[(k1,k2)][1]*muden_lpow_pow[k1+k2]]
+        xplincom_lpow[(k1,k2)]=xplincom_lpow[(k1,k2)].Mult_frac(coeff)
+    xplincom_lpow,den_lpow=Dict_common_denom(xplincom_lpow)
+    K=tc_0.field
+    pre_tc_fx=[K(0),K(0),K(0),K(0)]
+    for k1 in range(0,l):
+        for k2 in range(0,l):
+            assert(xplincom_lpow[(k1,k2)].denom==den_lpow)
+            for i in range(0,4):
+                pre_tc_fx[i]+=xplincom_lpow[(k1,k2)].numer[i]
+    tc_fx=Coord(pre_tc_fx,den_lpow)
+    return xplincom_lpow
+
+
+
+
 #2
 #avoid to take l-th square roots.
-def Evaluation_E1(tc_0:NullCoord,basis:list,pt_list:list,lmd_data:list):
+def EvalSq(tc_0:NullCoord,basis:list,pt_list:list,lmd_data:list):
     l=basis[0].order
     [lmd_pow_product,lm_1_lsq,lm_2_lsq]=lmd_data
     assert(type(lmd_pow_product)==dict)

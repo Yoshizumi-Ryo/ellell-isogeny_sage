@@ -138,6 +138,12 @@ class NullCoord(Coord):
         sctt_ichi_0=self.Sum_chit_thetaipt_thetat()
         sctt_ichi_x=tc_x.Sum_chit_thetaipt_thetat()
         sctt_ichi_y=tc_y.Sum_chit_thetaipt_thetat()
+        assert(sctt_ichi_0[(2,0)]!=0)
+        assert(sctt_ichi_0[(2,1)]!=0)
+        assert(sctt_ichi_0[(1,0)]!=0)
+        assert(sctt_ichi_0[(1,2)]!=0)
+        assert(sctt_ichi_0[(3,0)]!=0)
+        assert(sctt_ichi_0[(3,3)]!=0)
         z_10_00=[sctt_ichi_x[(2,0)]*sctt_ichi_y[(2,0)],sctt_ichi_0[(2,0)]]
         z_10_01=[sctt_ichi_x[(2,1)]*sctt_ichi_y[(2,1)],sctt_ichi_0[(2,1)]]
         z_01_00=[sctt_ichi_x[(1,0)]*sctt_ichi_y[(1,0)],sctt_ichi_0[(1,0)]]
@@ -178,7 +184,12 @@ class NullCoord(Coord):
         kappa_a0sq=[kappa_ij[(0,alpha)][0]**2,kappa_ij[(0,alpha)][1]**2]          
         kappa_aa00=[kappa_ij[(alpha,alpha)][0]*kappa_ij[(0,0)][0],kappa_ij[(alpha,alpha)][1]*kappa_ij[(0,0)][1]]
         D=Frac_sub(kappa_a0sq,kappa_aa00)
-        root_D=[sqrt(D[0]*D[1]),D[1]]
+        root_part=D[0]*D[1]
+        print(100,In_subfield(root_part))
+        print(200,In_subfield(root_part/zeta_4))
+        the_root=sqrt(root_part)
+        print(300,In_subfield(the_root))
+        root_D=[the_root,D[1]]
         X1_num=Frac_add(kappa_ij[(0,alpha)],root_D)
         X0=[1,1]
         X1=Frac_div(X1_num,kappa_ij[(0,0)])
@@ -217,9 +228,33 @@ class NullCoord(Coord):
         tc_2x=kappa_ii.Divide(self)
         return tc_2x
         
+
+
+    def Diff_Add_except(self,tc_x:Coord,tc_y:Coord,tc_xmy:Coord):
+        j=0
+        while (tc_xmy.numer[j]==0):
+            j+=1
+        assert(tc_xmy.numer[j]!=0)
+        frac_xpy=[0,0,0,0]
+        kappa_ii=self.Kappa_ii(tc_x,tc_y)
+        frac_xpy[j]=[kappa_ii.numer[j]*tc_xmy.denom,kappa_ii.denom*tc_xmy.numer[j]]
+        kappa_ij=self.Kappa_ij(tc_x,tc_y)
+        for i in range(0,4):
+            if i!=j:
+                num=Frac_sub([2*(kappa_ij[i,j][0]),kappa_ij[i,j][1]],[frac_xpy[j][0]*tc_xmy.numer[i],frac_xpy[j][1]*tc_xmy.denom])
+                frac_xpy[i]=Frac_div(num,[tc_xmy.numer[j],tc_xmy.denom])
+        [xpy0,xpy1,xpy2,xpy3],den_xpy=Common_denom_frac(frac_xpy)
+        tc_xpy=Coord([xpy0[0],xpy1[0],xpy2[0],xpy3[0]],den_xpy)
+        print(10000)
+        return tc_xpy
+                        
+
+        
     def Diff_Add(self,tc_x:Coord,tc_y:Coord,tc_xmy:Coord):
         if (self==tc_xmy):
             return self.Double(tc_x)
+        if (tc_xmy.numer[0]==0 or tc_xmy.numer[1]==0 or tc_xmy.numer[2]==0 or tc_xmy.numer[3]==0):
+            return self.Diff_Add_except(tc_x,tc_y,tc_xmy)
         kappa_ii=self.Kappa_ii(tc_x,tc_y)
         tc_xpy=kappa_ii.Divide(tc_xmy)
         return tc_xpy

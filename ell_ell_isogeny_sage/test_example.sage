@@ -1,16 +1,16 @@
 
-
+#examples of isogeny calculations
 
 
 #setting========================================================
 
-#input paremeter here. -----------------
+#input parameter here. -----------------
 p =69504748411397252246297776661471 #characteristic.
 l=11  #degree.
 #----------------------------------------
 
-assert(l//(p+1)==0 or l//(p-1)==0)
-K=GF(p**4)
+assert((p+1)%l==0)
+K=GF(p**2)
 assert(p%4==3)
 N_A=l
 N_B=2  #order of the point.
@@ -29,34 +29,34 @@ tc_e12.order=l
 
 
 #compute codomain.
-tc_f0_c1   =Codomain_C1    (tc_0,[tc_e1,tc_e2,tc_e12])
-tc_f0_c1red=Codomain_C1_red(tc_0,[tc_e1,tc_e2,tc_e12])
-tc_f0_c2   =Codomain_C2    (tc_0,[tc_e1,tc_e2,tc_e12])
-tc_f0=tc_f0_c1
-
+tc_f0_sq =CodSq (tc_0,[tc_e1,tc_e2,tc_e12])
+tc_f0_one=CodOne(tc_0,[tc_e1,tc_e2,tc_e12])
+tc_f0=tc_f0_sq
 
 #there are the same theta coordinates.
-assert(tc_f0_c1.Is_same_proj(tc_f0_c1red))
-assert(tc_f0_c2.Is_same_proj(tc_f0_c1red))
-assert(tc_f0_c1.Is_same_proj(tc_f0_c2))
+assert(tc_f0_sq.Is_same_proj(tc_f0_one))
 
 
 lmd_data=Product_power_lambda([tc_e1,tc_e2,tc_e12])
 
 
 #compute evaluation.
-tc_fx_E1=Evaluation_E1(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
-tc_fx_E2=Evaluation_E2(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
+tc_fx_sq =EvalSq (tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
+tc_fx_one=EvalOne(tc_0,[tc_e1,tc_e2,tc_e12],[tc_x,tc_xpe1,tc_xpe2],lmd_data)
 
 
 #there should be the same theta coordinates.
-assert(tc_fx_E1.Is_same_proj(tc_fx_E2))
+assert(tc_fx_sq.Is_same_proj(tc_fx_one))
 
 
 
 #check that their orders are correct.
-assert(tc_f0.Is_order(tc_fx_E1,N_B))
-assert(tc_f0.Is_order(tc_fx_E2,N_B))
+assert(tc_f0.Is_order(tc_fx_sq ,N_B))
+assert(tc_f0.Is_order(tc_fx_one,N_B))
+
+
+
+
 
 
 

@@ -321,7 +321,7 @@ def Attack_prepare(E_B,E_pr,N_A:int,N_B:int,PA_EB,QA_EB,alpha_PA,alpha_QA,K):
     #assert(PA_EB.weil_pairing(QA_EB,N_A)*alpha_PA.weil_pairing(alpha_QA,N_A)==1)
     lm_pr,E_pr_L,iso_Epr_EprL=Elliptic_to_Legendre(E_pr)
     lm_B,E_B_L,iso_EB_EBL,S1,S2=Elliptic_to_Legendre_with_basis(E_B,N_B)
-    #print("take bais fin")
+    #print("take basis fin")
     #S1,S2=E_B_L.torsion_basis(N_B)
     assert(order(S1)==N_B)
     assert(order(S2)==N_B)
@@ -346,13 +346,13 @@ def Attack_prepare(E_B,E_pr,N_A:int,N_B:int,PA_EB,QA_EB,alpha_PA,alpha_QA,K):
     y  =[E_pr_L(0),S2   ]
     assert(order(k*PA_EB)==l)
     assert(order(k*QA_EB)==l)
-    tc_f1   =Construct_pt(ell_data,f_1,K)
-    tc_f2   =Construct_pt(ell_data,f_2,K)
+    tc_f1   =Construct_pt(ell_data,f_1                          ,K)
+    tc_f2   =Construct_pt(ell_data,f_2                          ,K)
     tc_f12  =Construct_pt(ell_data,[f_1[0]+f_2[0],f_1[1]+f_2[1]],K)
-    tc_x    =Construct_pt(ell_data,x,K)
+    tc_x    =Construct_pt(ell_data,x                            ,K)
     tc_xpf1 =Construct_pt(ell_data,[x[0]  +f_1[0],x[1]  +f_1[1]],K)
     tc_xpf2 =Construct_pt(ell_data,[x[0]  +f_2[0],x[1]  +f_2[1]],K)
-    tc_y    =Construct_pt(ell_data,y,K)
+    tc_y    =Construct_pt(ell_data,y                            ,K)
     tc_ypf1 =Construct_pt(ell_data,[y[0]  +f_1[0],y[1]  +f_1[1]],K)
     tc_ypf2 =Construct_pt(ell_data,[y[0]  +f_2[0],y[1]  +f_2[1]],K)
     assert(Is_Ellipitc_product(tc_0.numer)[0])
@@ -436,12 +436,12 @@ def Attack_main(N_A:int,N_B:int,tc_0:NullCoord,tc_f1:Coord,tc_f2:Coord,tc_f12:Co
         x_list =[tc_x ,tc_xpe1 ,tc_xpe2 ]
         y_list =[tc_y ,tc_ype1 ,tc_ype2 ]
         #-----------------------------------------------------------------------------------------
-        tc_cd0=Codomain_C2(tc_0,basis)
+        tc_cd0=CodOne(tc_0,basis)
         lmd_data=Product_power_lambda(basis)
-        tc_f1=Evaluation_E2(tc_0,basis,f1_list,lmd_data)
-        tc_f2=Evaluation_E2(tc_0,basis,f2_list,lmd_data)
-        tc_x =Evaluation_E2(tc_0,basis,x_list ,lmd_data)
-        tc_y =Evaluation_E2(tc_0,basis,y_list ,lmd_data)
+        tc_f1=EvalOne(tc_0,basis,f1_list,lmd_data)
+        tc_f2=EvalOne(tc_0,basis,f2_list,lmd_data)
+        tc_x =EvalOne(tc_0,basis,x_list ,lmd_data)
+        tc_y =EvalOne(tc_0,basis,y_list ,lmd_data)
         tc_0 =tc_cd0
         s*=l
         #assert(tc_0.Is_order(tc_x,N_B))
