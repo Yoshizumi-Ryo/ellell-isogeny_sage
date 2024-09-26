@@ -41,6 +41,7 @@ EvalOne ell= 19   83431
 ## 2.The SIDH Attack on B-SIDH.
 
 You can implement the SIDH attack on B-SIDH with two types of parameter: one with 30 security bits and the other with 128.
+Remark that for 128 security bits parameter, it takes about 11 hours.
 
 Write the following command:
 ```
