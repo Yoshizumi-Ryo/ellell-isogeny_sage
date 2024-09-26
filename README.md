@@ -1,51 +1,67 @@
 
 # ell_ell_isogeny_sage
 
-In this file, you can count operations of calculating $(\ell,\ell)$-isogeny and implement an attack for B-SIDH.
+In this file, you can count operations of calculating $(\ell,\ell)$-isogeny and implement the SIDH attack on B-SIDH.
 
 This is writen in [SageMath](https://www.sagemath.org).
 
-## How to use
+## 1.Counting the number of arithmetic operations.
 
-First, please load `Main.sage`: 
+You can count the number of arithmetic operations for four alogithms $\mathtt{CodSq}, \mathtt{CodOne}, \mathtt{EvalSq}, \mathtt{EvalOne}$ for $3\le \ell\le L$ where 
+$3\le L\le 200$. 
 
-```
-load("Main.sage")
-```
-
-
-### 1.Example
-
-When you want to calculate  an $(\ell,\ell)$-isogeny, please look at `test_example.sage`.
-
-In the file, first you implement "setting", then compute  $(\ell,\ell)$-isogeny, for example, 
+Write the following command:
 
 ```
-CodSq(tc_0,[tc_e1,tc_e2,tc_e12])
+sage main.sage "count" {the above L}
 ```
 
-### 2.Attack for B-SIDH
-
-When you want to implement attack for B-SIDH, please load `test_attack.sage`.
+For example, 
 
 ```
-load("test_attack.sage")
+$ sage main.sage "count" 20
+Please wait 20 seconds.
+CodSq ell= 3   1071
+CodSq ell= 5   2711
+CodSq ell= 7   6740
+CodSq ell= 11   14924
+CodSq ell= 13   18579
+CodSq ell= 17   31829
+CodSq ell= 19   44376
+
+CodOne ell= 3   771
+CodOne ell= 5   2452
+
+...
+
+EvalOne ell= 17   63336
+EvalOne ell= 19   83431
 ```
 
-Then, key exchange between Alice and Bob and attack for it begin. 
+## 2.The SIDH Attack on B-SIDH.
 
-If you want to implement other parameters, please rewrite parameter of the above of `test_attack.sage`.
+You can implement the SIDH attack on B-SIDH with two types of parameter: one with 30 security bits and the other with 128.
 
-
-### 3.Count operation to calculate $(\ell,\ell)$-isogeny 
-
-If you want to count the operation of $(\ell,\ell)$-isogeny for 4 ways $\mathtt{CodSq}, \mathtt{CodOne}, \mathtt{EvalSq}, \mathtt{EvalOne}$ for $3\le \ell\le L$, 
-please use function `Count_operation_of_isogeny(L)`. You can implement for $L < 200$, for example
-
+Write the following command:
 ```
-Count_operation_of_isogeny(30)
+sage main.sage "attack" {30 or 128}
 ```
-More concletely, please see `test_count.sage`.
+
+For example, 
+```
+$ sage main.sage "attack" 30
+isogeny chain: [13, 23, 37, 43, 47, 47, 59, 61, 71, 73, 97, 101]
+ell= 13
+ell= 23
+
+...
+
+ell= 97
+ell= 101
+Attack successful: True
+Attack time (sec): 60.96083307266235
+```
+
 
 
 
