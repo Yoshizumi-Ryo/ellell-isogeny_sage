@@ -28,11 +28,9 @@ load("func_count.sage")
 
 if __name__ == "__main__":
     args = sys.argv
+    assert(len(args) == 3)
     if args[1]=="attack":
-        if len(args)==3:
-            security_bits=int(args[2])
-        else:
-            security_bits=30
+        security_bits=int(args[2])
         assert(security_bits==30 or security_bits==128)
         if security_bits==30:
             p=276154505650672190920223
@@ -47,14 +45,10 @@ if __name__ == "__main__":
         print("Attack successful:",attack_result)
         print("Attack time (sec):",attack_time)
 
-
     if args[1]=="count":
-        if len(args)==3:
-            max_L=int(args[2])
-        else:
-            max_L=30
-        assert(max_L<=200)
         print("Please wait 20 seconds.")
+        max_L=int(args[2])
+        assert(max_L<=200)
         p=826791736418446924644415105270960270928927659729776400179861442336062222833458285859
         count_max,N_A,pt_data,K=Count_prepare(p,3,max_L)
         Count_Cod   (max_L,N_A,pt_data,K,"CodSq") 
