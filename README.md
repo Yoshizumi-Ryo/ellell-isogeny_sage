@@ -7,7 +7,7 @@ This is writen in [SageMath](https://www.sagemath.org).
 
 ## 1.Counting the number of arithmetic operations.
 
-You can count the number of arithmetic operations for four alogithms $\mathtt{CodSq}, \mathtt{CodOne}, \mathtt{EvalSq}, \mathtt{EvalOne}$ for $3\le \ell\le L$ where 
+You can count the number of arithmetic operations for four alogithms $\mathtt{CodSq}, \mathtt{CodOne}, \mathtt{EvalSq}, \mathtt{EvalOne}$ for prime numbers $3\le \ell\le L$ where 
 $3\le L\le 200$. 
 
 Write the following command:
