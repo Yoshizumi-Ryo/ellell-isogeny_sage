@@ -1,9 +1,13 @@
 
-# ell_ell_isogeny_sage
+# SageMath implementation of $(\ell,\ell)$-isogenies on theta coordiantes.
 
-In this file, you can count operations of calculating $(\ell,\ell)$-isogeny and implement the SIDH attack on B-SIDH.
+You can count the number of arithmetic operations of calculating $(\ell,\ell)$-isogenies and implement the SIDH attack on B-SIDH.
 
-This is writen in [SageMath](https://www.sagemath.org).
+These algorithms are proposed in a paper: "Efficient theta-based algorithms 
+for computing $(\ell, \ell)$-isogenies 
+on Kummer surfaces for arbitrary odd $\ell$."
+
+These are writen in [SageMath](https://www.sagemath.org).
 
 ## 1.Counting the number of arithmetic operations.
 
