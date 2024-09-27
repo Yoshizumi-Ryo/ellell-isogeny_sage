@@ -7,8 +7,10 @@ This is writen in [SageMath](https://www.sagemath.org).
 
 ## 1.Counting the number of arithmetic operations.
 
-You can count the number of arithmetic operations for four alogithms $\mathtt{CodSq}, \mathtt{CodOne}, \mathtt{EvalSq}, \mathtt{EvalOne}$ for prime numbers $3\le \ell\le L$ where 
-$3\le L\le 200$. 
+You can count the number of arithmetic operations of $(\ell,\ell)$-isogeny algorithms for prime numbers $3\le \ell\le L$. Here, $L$ is an inputed integer s.t. $3\le L\le 200$.
+
+These alrotihms are four kinds: $\mathtt{CodSq}, \mathtt{CodOne}, \mathtt{EvalSq}, \mathtt{EvalOne}$. If the  number of arithmetic operations is $m$ times multiplication and $s$  times square over $\mathbb{F}_{p^2}$, the results output an integer $3m+2s$.
+ 
 
 Write the following command:
 
