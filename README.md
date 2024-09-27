@@ -9,7 +9,7 @@ This is writen in [SageMath](https://www.sagemath.org).
 
 You can count the number of arithmetic operations of $(\ell,\ell)$-isogeny algorithms for prime numbers $3\le \ell\le L$. Here, $L$ is an inputed integer s.t. $3\le L\le 200$.
 
-These are four kinds of alrotihms: $\mathtt{CodSq}, \mathtt{CodOne}, \mathtt{EvalSq}, \mathtt{EvalOne}$. If the  number of arithmetic operations is $m$ times multiplications and $s$  times squares over $\mathbb{F}_{p^2}$, the result outputs an integer $3m+2s$.
+These are four kinds of alrotihms: $\mathtt{CodSq}, \mathtt{CodOne}, \mathtt{EvalSq}, \mathtt{EvalOne}$. If the  number of arithmetic operations is $m$ multiplications and $s$　squares over $\mathbb{F}_{p^2}$, the result outputs an integer $3m+2s$.
  
 
 Write the following command:
