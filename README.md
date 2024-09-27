@@ -16,7 +16,7 @@ Write the following command:
 sage main.sage "count" {the above L}
 ```
 
-For example, 
+For example, if $L=20$, 
 
 ```
 $ sage main.sage "count" 20
@@ -41,14 +41,14 @@ EvalOne ell= 19   83431
 ## 2.The SIDH Attack on B-SIDH.
 
 You can implement the SIDH attack on B-SIDH with two types of parameter: one with 30 security bits and the other with 128.
-Remark that for 128 security bits parameter, it takes about 11 hours.
+Remark that, for 128 security bits parameter, it takes about 11 hours.
 
 Write the following command:
 ```
 sage main.sage "attack" {30 or 128}
 ```
 
-For example, 
+For example, if 30 security bits, 
 ```
 $ sage main.sage "attack" 30
 isogeny chain: [13, 23, 37, 43, 47, 47, 59, 61, 71, 73, 97, 101]
