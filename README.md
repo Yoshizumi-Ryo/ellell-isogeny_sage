@@ -5,7 +5,7 @@ You can count the number of arithmetic operations of calculating $(\ell,\ell)$-i
 
 These algorithms are proposed in a paper: "Efficient theta-based algorithms 
 for computing $(\ell, \ell)$-isogenies 
-on Kummer surfaces for arbitrary odd $\ell$."
+on Kummer surfaces for arbitrary odd $\ell$." The ePrint is [here](https://eprint.iacr.org/2024/1519).
 
 These are writen in [SageMath](https://www.sagemath.org).
 
