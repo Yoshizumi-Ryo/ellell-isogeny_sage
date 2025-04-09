@@ -70,5 +70,8 @@ Attack time (sec): 60.96083307266235
 ```
 
 
-
+## Author
+- Name: Ryo Yoshizumi 
+- Affiliation: Kyushu University
+- Email: yoshizumi.ryo.483@s.kyushu-u.ac.jp
 
