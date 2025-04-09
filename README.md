@@ -19,13 +19,13 @@ These are four kinds of alrotihms: $\mathtt{CodSq}, \mathtt{CodOne}, \mathtt{Eva
 Write the following command:
 
 ```
-sage main.sage "count" {the above L}
+sage main.py "count" {the above L}
 ```
 
 For example, if $L=20$, 
 
 ```
-$ sage main.sage "count" 20
+$ sage main.py "count" 20
 Please wait 20 seconds.
 CodSq ell= 3   1071
 CodSq ell= 5   2711
@@ -51,12 +51,12 @@ Remark that, for 128 security bits parameter, it takes about 11 hours.
 
 Write the following command:
 ```
-sage main.sage "attack" {30 or 128}
+sage main.py "attack" {30 or 128}
 ```
 
 For example, if 30 security bits, 
 ```
-$ sage main.sage "attack" 30
+$ sage main.py "attack" 30
 isogeny chain: [13, 23, 37, 43, 47, 47, 59, 61, 71, 73, 97, 101]
 ell= 13
 ell= 23
